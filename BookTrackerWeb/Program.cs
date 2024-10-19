@@ -1,4 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using BookTrackerWEb.Data;
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<BookTrackerDBContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("BookTrackerDBContext")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
